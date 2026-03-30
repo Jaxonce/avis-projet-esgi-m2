@@ -1,22 +1,44 @@
 package fr.esgi.avis.business;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
 public class Jeu {
 
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Long id;
-    private String nom;
-    private LocalDate dateDeSortie;
-    private String description;
-    private Editeur editeur;
-    private List<Plateforme> plateformes = new ArrayList<>();
-    private boolean possedeImage;
 
-    public Jeu() {
-    }
+    @ToString.Include
+    private String nom;
+
+    @ToString.Include
+    private LocalDate dateDeSortie;
+
+    private String description;
+
+    private Editeur editeur;
+
+    private Classification classification;
+
+    private List<Plateforme> plateformes = new ArrayList<>();
+
+    private List<Genre> genres = new ArrayList<>();
+
+    @ToString.Include
+    private boolean possedeImage;
 
     public Jeu(String nom) {
         this.nom = nom;
@@ -27,6 +49,15 @@ public class Jeu {
         this.dateDeSortie = dateDeSortie;
         this.editeur = editeur;
         this.plateformes = plateformes;
+    }
+
+    public Jeu(String nom, LocalDate dateDeSortie, Editeur editeur, Classification classification, List<Plateforme> plateformes, List<Genre> genres) {
+        this.nom = nom;
+        this.dateDeSortie = dateDeSortie;
+        this.editeur = editeur;
+        this.classification = classification;
+        this.plateformes = plateformes;
+        this.genres = genres;
     }
 
     public Jeu(String nom, LocalDate dateDeSortie, String description, boolean possedeImage, Editeur editeur, List<Plateforme> plateformes) {
@@ -48,86 +79,15 @@ public class Jeu {
         this.possedeImage = possedeImage;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public Jeu(Long id, String nom, LocalDate dateDeSortie, String description, Editeur editeur, Classification classification, List<Plateforme> plateformes, List<Genre> genres, boolean possedeImage) {
         this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public LocalDate getDateDeSortie() {
-        return dateDeSortie;
-    }
-
-    public void setDateDeSortie(LocalDate dateDeSortie) {
         this.dateDeSortie = dateDeSortie;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Editeur getEditeur() {
-        return editeur;
-    }
-
-    public void setEditeur(Editeur editeur) {
         this.editeur = editeur;
-    }
-
-    public List<Plateforme> getPlateformes() {
-        return plateformes;
-    }
-
-    public void setPlateformes(List<Plateforme> plateformes) {
+        this.classification = classification;
         this.plateformes = plateformes;
-    }
-
-    public boolean isPossedeImage() {
-        return possedeImage;
-    }
-
-    public void setPossedeImage(boolean possedeImage) {
+        this.genres = genres;
         this.possedeImage = possedeImage;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Jeu jeu = (Jeu) o;
-        return Objects.equals(id, jeu.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Jeu{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", dateDeSortie=" + dateDeSortie +
-                ", possedeImage=" + possedeImage +
-                '}';
     }
 }

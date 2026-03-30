@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Editeur {
+public class Classification {
 
     @EqualsAndHashCode.Include
     @ToString.Include
@@ -25,13 +25,9 @@ public class Editeur {
     @ToString.Include
     private String nom;
 
-    @ToString.Include
-    private String logo;
-
     private List<Jeu> jeux = new ArrayList<>();
 
-    public Editeur(String nom, String logo) {
+    public Classification(String nom) {
         this.nom = nom;
-        this.logo = logo;
     }
 }
