@@ -2,11 +2,14 @@ package fr.esgi.avis.persistance.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class PlateformeEntity {
@@ -18,5 +21,6 @@ public class PlateformeEntity {
 
     private LocalDate dateDeSortie;
 
-    private List<JeuEntity> jeux = new ArrayList<>();
+    @ManyToMany(mappedBy = "plateformes")
+    private Set<JeuEntity> jeux = new HashSet<>();
 }

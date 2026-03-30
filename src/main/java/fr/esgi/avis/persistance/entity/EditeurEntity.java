@@ -2,10 +2,14 @@ package fr.esgi.avis.persistance.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class EditeurEntity {
@@ -15,5 +19,6 @@ public class EditeurEntity {
 
     private String nom;
 
-    private List<JeuEntity> jeux = new ArrayList<>();
+    @OneToMany(mappedBy = "editeur")
+    private Set<JeuEntity> jeux = new HashSet<>();
 }

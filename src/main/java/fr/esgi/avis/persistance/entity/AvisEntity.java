@@ -2,6 +2,8 @@ package fr.esgi.avis.persistance.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,9 +20,12 @@ public class AvisEntity {
 
     private float note;
 
+    @ManyToOne
     private JeuEntity jeu;
 
+    @ManyToOne
     private JoueurEntity joueur;
 
+    @ManyToOne
     private ModerateurEntity moderateur;
 }

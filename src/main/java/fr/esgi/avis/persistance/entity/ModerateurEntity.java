@@ -1,9 +1,10 @@
 package fr.esgi.avis.persistance.entity;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.*;
 
 @Entity
+@DiscriminatorValue("MODERATEUR")
 public class ModerateurEntity extends UtilisateurEntity {
 
     private String numeroDeTelephone;

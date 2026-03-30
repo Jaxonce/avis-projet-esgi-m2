@@ -1,18 +1,23 @@
 package fr.esgi.avis.persistance.entity;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.*;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@DiscriminatorValue("JOUEUR")
 public class JoueurEntity extends UtilisateurEntity {
 
     private LocalDate dateDeNaissance;
 
+    @OneToOne
     private AvatarEntity avatar;
 
-    private List<AvisEntity> avis = new ArrayList<>();
+    @OneToMany(mappedBy = "joueur")
+    private Set<AvisEntity> avis = new HashSet<>();
 }
