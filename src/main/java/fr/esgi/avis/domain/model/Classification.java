@@ -1,4 +1,4 @@
-package fr.esgi.avis.business;
+package fr.esgi.avis.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Genre {
+public class Classification {
 
     @EqualsAndHashCode.Include
     @ToString.Include
@@ -25,9 +25,17 @@ public class Genre {
     @ToString.Include
     private String nom;
 
+    @ToString.Include
+    private String couleurRGB;
+
     private List<Jeu> jeux = new ArrayList<>();
 
-    public Genre(String nom) {
+    public Classification(String nom) {
         this.nom = nom;
+    }
+
+    public Classification(String nom, String couleurRGB) {
+        this.nom = nom;
+        this.couleurRGB = couleurRGB;
     }
 }

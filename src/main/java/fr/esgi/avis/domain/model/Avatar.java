@@ -1,4 +1,4 @@
-package fr.esgi.avis.business;
+package fr.esgi.avis.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -7,16 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Editeur {
+public class Avatar {
 
     @EqualsAndHashCode.Include
     @ToString.Include
@@ -25,13 +22,5 @@ public class Editeur {
     @ToString.Include
     private String nom;
 
-    @ToString.Include
-    private String logo;
-
-    private List<Jeu> jeux = new ArrayList<>();
-
-    public Editeur(String nom, String logo) {
-        this.nom = nom;
-        this.logo = logo;
-    }
+    private Joueur joueur;
 }

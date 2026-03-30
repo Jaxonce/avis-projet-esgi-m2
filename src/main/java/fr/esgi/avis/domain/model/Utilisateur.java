@@ -1,4 +1,4 @@
-package fr.esgi.avis.business;
+package fr.esgi.avis.domain.model;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
@@ -25,8 +25,6 @@ public abstract class Utilisateur {
     protected String email;
 
     protected String motDePasse;
-
-    protected Avatar avatar;
 
     protected Utilisateur(String pseudo, String motDePasse, String email) {
         this.pseudo = pseudo;

@@ -1,4 +1,4 @@
-package fr.esgi.avis.business;
+package fr.esgi.avis.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Classification {
+public class Editeur {
 
     @EqualsAndHashCode.Include
     @ToString.Include
@@ -27,7 +27,7 @@ public class Classification {
 
     private List<Jeu> jeux = new ArrayList<>();
 
-    public Classification(String nom) {
+    public Editeur(String nom) {
         this.nom = nom;
     }
 }

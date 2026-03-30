@@ -1,4 +1,4 @@
-package fr.esgi.avis.business;
+package fr.esgi.avis.domain.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,7 +35,13 @@ public class Jeu {
 
     private List<Plateforme> plateformes = new ArrayList<>();
 
-    private List<Genre> genres = new ArrayList<>();
+    private Genre genre;
+
+    @ToString.Include
+    private float prix;
+
+    @ToString.Include
+    private String image;
 
     @ToString.Include
     private boolean possedeImage;
@@ -51,13 +57,13 @@ public class Jeu {
         this.plateformes = plateformes;
     }
 
-    public Jeu(String nom, LocalDate dateDeSortie, Editeur editeur, Classification classification, List<Plateforme> plateformes, List<Genre> genres) {
+    public Jeu(String nom, LocalDate dateDeSortie, Editeur editeur, Classification classification, List<Plateforme> plateformes, Genre genre) {
         this.nom = nom;
         this.dateDeSortie = dateDeSortie;
         this.editeur = editeur;
         this.classification = classification;
         this.plateformes = plateformes;
-        this.genres = genres;
+        this.genre = genre;
     }
 
     public Jeu(String nom, LocalDate dateDeSortie, String description, boolean possedeImage, Editeur editeur, List<Plateforme> plateformes) {
@@ -79,7 +85,7 @@ public class Jeu {
         this.possedeImage = possedeImage;
     }
 
-    public Jeu(Long id, String nom, LocalDate dateDeSortie, String description, Editeur editeur, Classification classification, List<Plateforme> plateformes, List<Genre> genres, boolean possedeImage) {
+    public Jeu(Long id, String nom, LocalDate dateDeSortie, String description, Editeur editeur, Classification classification, List<Plateforme> plateformes, Genre genre, boolean possedeImage, float prix, String image) {
         this.id = id;
         this.nom = nom;
         this.dateDeSortie = dateDeSortie;
@@ -87,7 +93,9 @@ public class Jeu {
         this.editeur = editeur;
         this.classification = classification;
         this.plateformes = plateformes;
-        this.genres = genres;
+        this.genre = genre;
         this.possedeImage = possedeImage;
+        this.prix = prix;
+        this.image = image;
     }
 }

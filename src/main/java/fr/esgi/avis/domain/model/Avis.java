@@ -1,4 +1,4 @@
-package fr.esgi.avis.business;
+package fr.esgi.avis.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,18 +15,23 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Plateforme {
+public class Avis {
 
     @EqualsAndHashCode.Include
     @ToString.Include
     private Long id;
 
+    private String description;
+
     @ToString.Include
-    private String nom;
+    private LocalDateTime DateDenvoi;
 
-    private List<Jeu> jeux = new ArrayList<>();
+    @ToString.Include
+    private float note;
 
-    public Plateforme(String nom) {
-        this.nom = nom;
-    }
+    private Jeu jeu;
+
+    private Joueur joueur;
+
+    private Moderateur moderateur;
 }
