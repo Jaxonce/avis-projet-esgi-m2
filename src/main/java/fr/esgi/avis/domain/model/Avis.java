@@ -27,7 +27,7 @@ public class Avis {
     private LocalDateTime DateDenvoi;
 
     @ToString.Include
-    private float note;
+    private Double note;
 
     private Jeu jeu;
 

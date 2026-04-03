@@ -38,7 +38,7 @@ public class Jeu {
     private Genre genre;
 
     @ToString.Include
-    private float prix;
+    private Double prix;
 
     @ToString.Include
     private String image;
@@ -85,7 +85,7 @@ public class Jeu {
         this.possedeImage = possedeImage;
     }
 
-    public Jeu(Long id, String nom, LocalDate dateDeSortie, String description, Editeur editeur, Classification classification, List<Plateforme> plateformes, Genre genre, boolean possedeImage, float prix, String image) {
+    public Jeu(Long id, String nom, LocalDate dateDeSortie, String description, Editeur editeur, Classification classification, List<Plateforme> plateformes, Genre genre, boolean possedeImage, Double prix, String image) {
         this.id = id;
         this.nom = nom;
         this.dateDeSortie = dateDeSortie;
