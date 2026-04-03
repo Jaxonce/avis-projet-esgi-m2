@@ -3,7 +3,7 @@ package fr.esgi.avis.adapter;
 import fr.esgi.avis.domain.mapper.AvisMapper;
 import fr.esgi.avis.domain.model.Avis;
 import fr.esgi.avis.domain.usecase.UtilisateurGetAvisUseCase;
-import fr.esgi.avis.persistance.repository.AvisRepository;
+import fr.esgi.avis.domain.repository.AvisRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
