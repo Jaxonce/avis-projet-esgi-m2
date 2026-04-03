@@ -1,5 +1,6 @@
 package fr.esgi.avis.adapter;
 
+import fr.esgi.avis.domain.mapper.AvisMapper;
 import fr.esgi.avis.domain.model.Avis;
 import fr.esgi.avis.domain.usecase.UtilisateurGetAvisUseCase;
 import fr.esgi.avis.persistance.repository.AvisRepository;
@@ -18,6 +19,6 @@ public class UtilisateurGetAvisAdapter implements UtilisateurGetAvisUseCase.Outp
 
     @Override
     public List<Avis> findAllAvis() {
-        return avisRepository.findAll()
+        return avisRepository.findAll().stream().map(AvisMapper.INSTANCE::avisEntityToAvis).toList();
     }
 }
