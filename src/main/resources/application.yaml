@@ -14,5 +14,13 @@ spring:
     hibernate:
       ddl-auto: update
 
+app:
+  jwt:
+    secret: "avis-app-secret-key-must-be-at-least-256-bits-long-for-hmac-sha256"
+    expiration: 86400000
+  admin:
+    pseudo: admin
+    password: admin123
+
 server:
   port: 8081

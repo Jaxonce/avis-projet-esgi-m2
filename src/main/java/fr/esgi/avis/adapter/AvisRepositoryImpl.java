@@ -27,4 +27,9 @@ public class AvisRepositoryImpl implements AvisRepository {
     public void save(Avis avis) {
         avisJpaRepository.save(AvisMapper.INSTANCE.avisToAvisEntity(avis));
     }
+
+    @Override
+    public void deleteById(Long id) {
+        avisJpaRepository.deleteById(id);
+    }
 }

@@ -6,6 +6,7 @@ import fr.esgi.avis.domain.repository.JeuRepository;
 import fr.esgi.avis.persistance.repository.JeuJpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -15,6 +16,11 @@ public class JeuRepositoryImpl implements JeuRepository {
 
     public JeuRepositoryImpl(JeuJpaRepository jeuJpaRepository) {
         this.jeuJpaRepository = jeuJpaRepository;
+    }
+
+    @Override
+    public List<Jeu> findAll() {
+        return jeuJpaRepository.findAll().stream().map(JeuMapper.INSTANCE::jeuEntityToJeu).toList();
     }
 
     @Override

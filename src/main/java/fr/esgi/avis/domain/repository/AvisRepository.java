@@ -8,4 +8,5 @@ import java.util.List;
 public interface AvisRepository {
     List<AvisEntity> findAll();
     void save(Avis avis);
+    void deleteById(Long id);
 }
