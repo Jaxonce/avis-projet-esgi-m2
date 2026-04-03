@@ -14,8 +14,8 @@ public class AvisApplication {
 		SpringApplication.run(AvisApplication.class, args);
 	}
 
-	@Bean
-	public UtilisateurGetAvisUseCase utilisateurGetAvisUseCase(UtilisateurGetAvisUseCase.OutputPort outputPort) {
-		return new UtilisateurGetAvisUseCase(outputPort);
-	}
+//	@Bean
+//	public UtilisateurGetAvisUseCase utilisateurGetAvisUseCase(UtilisateurGetAvisUseCase.OutputPort outputPort) {
+//		return new UtilisateurGetAvisUseCase(outputPort);
+//	}
 }

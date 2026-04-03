@@ -1,9 +1,11 @@
 package fr.esgi.avis.domain.usecase;
 
 import fr.esgi.avis.domain.model.Avis;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class UtilisateurGetAvisUseCase {
 
     private final OutputPort outputPort;
