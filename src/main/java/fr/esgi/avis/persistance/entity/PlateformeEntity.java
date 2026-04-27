@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class PlateformeEntity {
 
     @Id

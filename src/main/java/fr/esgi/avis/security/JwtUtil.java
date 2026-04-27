@@ -40,6 +40,10 @@ public class JwtUtil {
         return parseClaims(token).get("role", String.class);
     }
 
+    public Date extractExpiration(String token) {
+        return parseClaims(token).getExpiration();
+    }
+
     public boolean isTokenValid(String token) {
         try {
             parseClaims(token);

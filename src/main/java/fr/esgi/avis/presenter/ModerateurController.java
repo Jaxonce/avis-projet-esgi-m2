@@ -7,11 +7,13 @@ import fr.esgi.avis.domain.dto.LoginResponse;
 import fr.esgi.avis.domain.dto.RegisterModerateurRequest;
 import fr.esgi.avis.domain.mapper.AvisMapper;
 import fr.esgi.avis.domain.usecase.ModeratorAddGameUseCase;
+import fr.esgi.avis.domain.usecase.ModeratorLogoutUseCase;
 import fr.esgi.avis.domain.usecase.ModeratorManageAvisUseCase;
 import fr.esgi.avis.domain.usecase.RegisterModerateurUseCase;
 import fr.esgi.avis.security.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,15 +34,18 @@ public class ModerateurController {
     private final RegisterModerateurUseCase registerModerateurUseCase;
     private final ModeratorAddGameUseCase moderatorAddGameUseCase;
     private final ModeratorManageAvisUseCase moderatorManageAvisUseCase;
+    private final ModeratorLogoutUseCase moderatorLogoutUseCase;
     private final AuthService authService;
 
     public ModerateurController(RegisterModerateurUseCase registerModerateurUseCase,
                                 ModeratorAddGameUseCase moderatorAddGameUseCase,
                                 ModeratorManageAvisUseCase moderatorManageAvisUseCase,
+                                ModeratorLogoutUseCase moderatorLogoutUseCase,
                                 AuthService authService) {
         this.registerModerateurUseCase = registerModerateurUseCase;
         this.moderatorAddGameUseCase = moderatorAddGameUseCase;
         this.moderatorManageAvisUseCase = moderatorManageAvisUseCase;
+        this.moderatorLogoutUseCase = moderatorLogoutUseCase;
         this.authService = authService;
     }
 
@@ -71,5 +76,12 @@ public class ModerateurController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAvis(@PathVariable Long id) {
         moderatorManageAvisUseCase.deleteAvis(id);
+    }
+
+    @PostMapping("/logout")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void logout(HttpServletRequest request) {
+        String token = request.getHeader("Authorization").substring(7);
+        moderatorLogoutUseCase.apply(token);
     }
 }

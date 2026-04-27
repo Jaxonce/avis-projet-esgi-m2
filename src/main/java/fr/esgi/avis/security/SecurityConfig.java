@@ -35,6 +35,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/utilisateur/inscription").permitAll()
                 .requestMatchers(HttpMethod.POST, "/utilisateur/login").permitAll()
                 .requestMatchers(HttpMethod.POST, "/moderateur/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/moderateur/inscription").permitAll()
                 .requestMatchers("/moderateur/**").hasRole("MODERATEUR")
                 .requestMatchers("/utilisateur/**").hasAnyRole("JOUEUR", "MODERATEUR")
                 .anyRequest().authenticated()

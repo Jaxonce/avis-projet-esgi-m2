@@ -11,10 +11,12 @@ import fr.esgi.avis.domain.mapper.JeuMapper;
 import fr.esgi.avis.domain.usecase.RegisterJoueurUseCase;
 import fr.esgi.avis.domain.usecase.UtilisateurGetAvisUseCase;
 import fr.esgi.avis.domain.usecase.UtilisateurGetGameUseCase;
+import fr.esgi.avis.domain.usecase.UtilisateurLogoutUseCase;
 import fr.esgi.avis.domain.usecase.UtilisateurWriteAvisUseCase;
 import fr.esgi.avis.security.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,17 +35,20 @@ public class UtilisateurController {
     private final UtilisateurWriteAvisUseCase utilisateurWriteAvisUseCase;
     private final RegisterJoueurUseCase registerJoueurUseCase;
     private final UtilisateurGetGameUseCase utilisateurGetGameUseCase;
+    private final UtilisateurLogoutUseCase utilisateurLogoutUseCase;
     private final AuthService authService;
 
     public UtilisateurController(UtilisateurGetAvisUseCase utilisateurGetAvisUseCase,
                                  UtilisateurWriteAvisUseCase utilisateurWriteAvisUseCase,
                                  RegisterJoueurUseCase registerJoueurUseCase,
                                  UtilisateurGetGameUseCase utilisateurGetGameUseCase,
+                                 UtilisateurLogoutUseCase utilisateurLogoutUseCase,
                                  AuthService authService) {
         this.utilisateurGetAvisUseCase = utilisateurGetAvisUseCase;
         this.utilisateurWriteAvisUseCase = utilisateurWriteAvisUseCase;
         this.registerJoueurUseCase = registerJoueurUseCase;
         this.utilisateurGetGameUseCase = utilisateurGetGameUseCase;
+        this.utilisateurLogoutUseCase = utilisateurLogoutUseCase;
         this.authService = authService;
     }
 
@@ -74,5 +79,12 @@ public class UtilisateurController {
     @ResponseStatus(HttpStatus.CREATED)
     public void writeAvis(@RequestBody CreateAvisRequest request) {
         utilisateurWriteAvisUseCase.apply(request);
+    }
+
+    @PostMapping("/logout")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void logout(HttpServletRequest request) {
+        String token = request.getHeader("Authorization").substring(7);
+        utilisateurLogoutUseCase.apply(token);
     }
 }
