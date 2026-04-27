@@ -153,27 +153,36 @@ classDiagram
 
 ## 3. Diagramme état-transition : cycle de vie d'un Jeu
 
+Un jeu possède deux états observables selon la présence ou non d'avis.
+
 ```mermaid
 stateDiagram-v2
-    [*] --> Inexistant
+    direction LR
 
-    Inexistant --> Disponible : POST /moderateur/jeu\n(Modérateur ajoute le jeu)
+    [*] --> Disponible : Modérateur crée le jeu
 
-    Disponible --> Commenté : POST /utilisateur/avis\n(Joueur écrit un avis)
+    Disponible --> Commenté : Un joueur écrit un avis
 
-    Commenté --> Commenté : POST /utilisateur/avis\n(Joueur écrit un autre avis)
+    Commenté --> Commenté : Un joueur écrit un avis\nOU un modérateur supprime un avis\n(il en reste d'autres)
 
-    Commenté --> Disponible : DELETE /moderateur/avis/{id}\n(Modérateur supprime le dernier avis)
-
-    Commenté --> PartiellementModéré : DELETE /moderateur/avis/{id}\n(Modérateur supprime un avis,\nil en reste d'autres)
-
-    PartiellementModéré --> Commenté : POST /utilisateur/avis\n(Nouvel avis)
-
-    PartiellementModéré --> Disponible : DELETE /moderateur/avis/{id}\n(Suppression du dernier avis restant)
-
-    Disponible --> [*] : (suppression non implémentée)
-    Commenté --> [*] : (suppression non implémentée)
+    Commenté --> Disponible : Le modérateur supprime\nle dernier avis
 ```
+
+**Explication des états :**
+
+| État | Description |
+|------|-------------|
+| **Disponible** | Le jeu existe en base, visible via `GET /utilisateur/jeu`, aucun avis associé |
+| **Commenté** | Le jeu possède au moins un avis, visible via `GET /utilisateur/avis` |
+
+**Transitions :**
+
+| De | Vers | Déclencheur |
+|----|------|-------------|
+| *(initial)* | Disponible | `POST /moderateur/jeu` |
+| Disponible | Commenté | `POST /utilisateur/avis` |
+| Commenté | Commenté | `POST /utilisateur/avis` ou `DELETE /moderateur/avis/{id}` (s'il reste des avis) |
+| Commenté | Disponible | `DELETE /moderateur/avis/{id}` (suppression du dernier avis) |
 
 ---
 
