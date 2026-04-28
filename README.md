@@ -47,3 +47,9 @@ npm run dev
 |------------|----------|
 | Joueur     | Via le formulaire d'inscription sur la page de connexion |
 | Modérateur | Via le formulaire d'inscription (onglet Modérateur), ou compte par défaut `admin` / `admin123` |
+
+## Documentation technique
+
+Vous trouverez la documentation technique dans le dossier suivant :
+
+`backend/doc`
