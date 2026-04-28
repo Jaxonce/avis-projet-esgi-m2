@@ -158,7 +158,7 @@ Un jeu possède deux états observables selon la présence ou non d'avis.
 ```mermaid
 ---
 config:
-  theme: forest
+  theme: dark
   look: classic
 ---
 stateDiagram-v2
