@@ -156,16 +156,21 @@ classDiagram
 Un jeu possède deux états observables selon la présence ou non d'avis.
 
 ```mermaid
+---
+config:
+  theme: forest
+  look: classic
+---
 stateDiagram-v2
-    direction LR
+    [*] --> Inexistant
 
-    [*] --> Disponible : Modérateur crée le jeu
+    Inexistant --> Disponible : POST /moderateur/jeu
 
-    Disponible --> Commenté : Un joueur écrit un avis
+    Disponible --> Commenté : POST /utilisateur/avis
 
-    Commenté --> Commenté : Un joueur écrit un avis\nOU un modérateur supprime un avis\n(il en reste d'autres)
+    Commenté --> PartiellementModéré : DELETE /moderateur/avis/{id}
 
-    Commenté --> Disponible : Le modérateur supprime\nle dernier avis
+    PartiellementModéré --> Commenté : POST /utilisateur/avis
 ```
 
 **Explication des états :**
